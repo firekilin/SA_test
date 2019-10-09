@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">SA_test7</string>
+    <string name="b_register">註冊廠商</string>
+    <string name="m_register">註冊會員</string>
+    <string name="scanner_test">請輸入金額：</string>
+    <string name="output_test"></string>
+    <string name="output_show">確認</string>
+    <string name="back">回目錄</string>
+    <string name="getname">輸入暱稱</string>
+    <string name="getname2"></string>
+    <string name="register">註冊</string>
+    <string name="M_getmoney">收紅包</string>
+    <string name="M_buy">買東西</string>
+    <string name="B_register_1">請輸入公司名稱</string>
+    <string name="B_register_2">參加活動獎金</string>
+    <string name="B_register_3">商品名稱</string>
+    <string name="B_register_4">商品訂價</string>
+    <string name="B_register_5">確認</string>
+    <string name="nulll"></string>
+    <string name="todo">TODO</string>
+    <string name="kilin">kilin</string>
+    <string name="m_membergetmoney">目前金額：</string>
+    <string name="B_gift">送紅包</string>
+    <string name="B_sale">賣商品</string>
+    <string name="gogoing">加載中，請稍候</string>
+    <string name="textview">TextView</string>
+</resources>

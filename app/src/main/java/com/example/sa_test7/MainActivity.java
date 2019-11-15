@@ -9,13 +9,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
-import java.lang.reflect.Member;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,11 +22,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         SharedPreferences settings = getSharedPreferences("user", 0);
 
 
-
         String str = settings.getString("M_id","尚未註冊，請先註冊");
+
         if (str.equals("重複")){
             new AlertDialog.Builder(MainActivity.this)
                     .setTitle("注意")//設定視窗標題
@@ -71,7 +71,41 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+        final Thread yoyo = new Thread(new Runnable() {
+            @Override
+            public void run() {
 
+                //加載驅動
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Log.v("ha", "加載JDBC驅動成功");
+                } catch (ClassNotFoundException e) {
+                    Log.e("ha", "加載JDBC驅動失敗");
+                    return;
+                }
+
+                //連接資料庫
+                String url="jdbc:mysql://140.135.113.197:5222/sa?serverTimezone=UTC";
+                try {
+
+                    Connection conn = DriverManager.getConnection(url, "jing", "1234");
+                    Log.v("ha", "遠程連接成功!");
+                    if (conn != null) {
+                        String sql = "SELECT * FROM sa.member";
+                        java.sql.Statement statement = conn.createStatement();
+                        ResultSet rSet = statement.executeQuery(sql);
+
+                        conn.close();
+                        return;
+                    }
+                } catch (SQLException e) {
+                    Log.e("ha", "遠程連接失敗!"+e);
+                }
+
+            }
+
+        });
+        yoyo.start();
     }
     public void gobusiness(){
         Intent it = new Intent(MainActivity.this,business.class);
@@ -107,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
     final Thread yoyo = new Thread(new Runnable() {
         @Override
         public void run() {
+
+        //加載驅動
           try {
             Class.forName("com.mysql.jdbc.Driver");
             Log.v("ha", "加載JDBC驅動成功");
@@ -115,17 +151,16 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        //連接資料庫
             String url="jdbc:mysql://db4free.net:3306/kmbmteam?serverTimezone=UTC";
-            // 3.連接JDBC
             try {
                 Connection conn;
-                conn= DriverManager.getConnection(url,"mkbmyo","13145270");
+                conn= DriverManager.getConnection(url,"（帳號）","（密碼）");
                 Log.v("ha", "遠程連接成功!");
                 if (conn != null) {
                     String sql = "SELECT * FROM kmbmteam.member";
                     java.sql.Statement statement = conn.createStatement();
                     ResultSet rSet = statement.executeQuery(sql);
-                    String showa="";
                     while (rSet.next()) {
                         showa=showa+"/n"+rSet.getString(3);
                     }

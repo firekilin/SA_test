@@ -18,7 +18,6 @@ import java.sql.ResultSet;
 
 public class B_register extends AppCompatActivity {
     String name;
-    String gift;
     String p_name;
     String p_price;
 
@@ -30,12 +29,10 @@ public class B_register extends AppCompatActivity {
     //M_register_禁止重複暱稱並增加資料
     public  void B_register_click(View v){
         EditText getname = (EditText) findViewById(R.id.editText);
-        EditText getgift = (EditText) findViewById(R.id.editText6);
-        EditText get_name = (EditText) findViewById(R.id.editText6);
-        EditText get_price = (EditText) findViewById(R.id.editText6);
+        EditText get_name = (EditText) findViewById(R.id.editText4);
+        EditText get_price = (EditText) findViewById(R.id.editText3);
         Button buttons=(Button) findViewById(R.id.button4) ;
         name=getname.getText().toString();
-        gift=getgift.getText().toString();
         p_name=get_name.getText().toString();
         p_price=get_price.getText().toString();
 
@@ -55,8 +52,8 @@ public class B_register extends AppCompatActivity {
 
                 // 3.連接JDBC
                 try {
-                    String url = "jdbc:mysql://db4free.net:3306/kmbmteam?serverTimezone=UTC";
-                    Connection conn = DriverManager.getConnection(url, "mkbmyo", "13145270");
+                    String url = "jdbc:mysql://140.135.113.188:5270/kmbmteam?serverTimezone=UTC";
+                    Connection conn = DriverManager.getConnection(url, "kilin", "5270");
                     Log.v("ha", "遠程連接成功!");
                     if (conn != null) {
                         java.sql.Statement statement = conn.createStatement();
@@ -84,7 +81,7 @@ public class B_register extends AppCompatActivity {
                                 editor.putString("B_id", rSet.getString("B_id"));
                                 editor.putString("B_money", rSet.getString("B_money"));
                                 editor.commit();
-                                statement.execute("  INSERT INTO `kmbmteam`.`activity` (`A_business`, `A_gift`) VALUES ('"+get_id+"', '"+gift+"');");
+                                statement.execute("  INSERT INTO `kmbmteam`.`activity` (`A_business`) VALUES ('"+get_id+"');");
                                 Log.v("ha", "遠程連接成功4!");
                                 statement.execute("INSERT INTO `kmbmteam`.`product` (`P_business`, `P_name`, `P_price`) VALUES ('"+get_id+"', '"+p_name+"', '"+p_price+"');");
                                 Log.v("ha", "遠程連接成功5!");

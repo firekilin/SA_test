@@ -54,10 +54,6 @@ public class M_scanner extends AppCompatActivity {
         setContentView(R.layout.activity_m_scanner);
         SharedPreferences settings = getSharedPreferences("user", 0);
         M_id= settings.getString("M_id","尚未註冊，請先註冊");
-        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},1);
-        }
 
         surfaceView=(SurfaceView)findViewById(R.id.surfaceView);
         textView=(TextView)findViewById(R.id.textView);
@@ -183,11 +179,11 @@ public class M_scanner extends AppCompatActivity {
 
                     return;
                 }
-                String url = "jdbc:mysql://db4free.net:3306/kmbmteam?serverTimezone=UTC";
+                String url = "jdbc:mysql://140.135.113.188:5270/kmbmteam?serverTimezone=UTC";
                 // 3.連接JDBC
                 try {
                     Connection conn;
-                    conn = DriverManager.getConnection(url, "mkbmyo", "13145270");
+                    conn = DriverManager.getConnection(url, "kilin", "5270");
                     Log.v("ha", "遠程連接成功!");
                     if (conn != null) {
 

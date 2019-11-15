@@ -51,10 +51,7 @@ public class B_scanner extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences("user", 0);
        B_id= settings.getString("B_id","尚未註冊，請先註冊");
        B_money=settings.getString("B_money","0");
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},1);
-        }
+
 
         surfaceView=(SurfaceView)findViewById(R.id.surfaceView);
         textView=(TextView)findViewById(R.id.textView);
@@ -101,8 +98,9 @@ public class B_scanner extends AppCompatActivity {
                     textView.post(new Runnable() {
                         @Override
                         public void run() {
-                            if(money!=null) {
+
                                 if (can == 1) {
+                                    if(money!=null) {
                                     try {
                                         textView.setText(qrCodes.valueAt(0).displayValue);
                                         String[] getlist = (qrCodes.valueAt(0).displayValue.split(";"));
@@ -163,20 +161,20 @@ public class B_scanner extends AppCompatActivity {
 
                                     }
 
-
+                                    } else{
+                                        can=0;
+                                        new AlertDialog.Builder(B_scanner.this)
+                                                .setTitle("注意")//設定視窗標題
+                                                .setMessage("失敗，請輸入交易金額")//設定顯示的文字
+                                                .setPositiveButton("關閉視窗", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        can = 1;
+                                                    }
+                                                })//設定結束的子視窗
+                                                .show();//呈現對話視窗
                                 }
-                            } else{
-                                can=0;
-                                new AlertDialog.Builder(B_scanner.this)
-                                        .setTitle("注意")//設定視窗標題
-                                        .setMessage("失敗，請輸入交易金額")//設定顯示的文字
-                                        .setPositiveButton("關閉視窗", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                can = 1;
-                                            }
-                                        })//設定結束的子視窗
-                                        .show();//呈現對話視窗
+
                         }
                     }
                     });
@@ -212,11 +210,11 @@ public class B_scanner extends AppCompatActivity {
 
                     return;
                 }
-                String url = "jdbc:mysql://db4free.net:3306/kmbmteam?serverTimezone=UTC";
+                String url = "jdbc:mysql://140.135.113.188:5270/kmbmteam?serverTimezone=UTC";
                 // 3.連接JDBC
                 try {
                     Connection conn;
-                    conn = DriverManager.getConnection(url, "mkbmyo", "13145270");
+                    conn = DriverManager.getConnection(url, "kilin", "5270");
                     Log.v("ha", "遠程連接成功!");
                     if (conn != null) {
 
@@ -224,7 +222,7 @@ public class B_scanner extends AppCompatActivity {
                         java.sql.Statement statement = conn.createStatement();
 
 
-                            String sql = "INSERT INTO `kmbmteam`.`activity_record` (`AR_activity`, `AR_member`) VALUES ('"+B_id+"', '"+memberid+"');";
+                            String sql = "INSERT INTO `kmbmteam`.`activity_record` (`AR_activity`, `AR_member`,`AR_money`) VALUES ('"+B_id+"', '"+memberid+"','"+money+"');";
                             statement.execute(sql);
                             sql=" UPDATE `kmbmteam`.`member` SET `M_money` = `M_money`+"+money+" WHERE (`M_id` = '"+memberid+"');";
                             statement.execute(sql);
@@ -239,8 +237,7 @@ public class B_scanner extends AppCompatActivity {
                     }
                 } catch (SQLException e) {
                     Log.e("ha", "遠程連接失敗!" + e);
-                    TextView etContent = (TextView) findViewById(R.id.textView);
-                    etContent.setText("失敗"+e);
+
                 }
 
 

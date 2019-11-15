@@ -47,5 +47,12 @@
             android:onClick="buy_click"
             android:text="@string/M_buy" />
 
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/record"
+            android:onClick="gorecord"/>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

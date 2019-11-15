@@ -23,5 +23,17 @@
     <string name="B_gift">送紅包</string>
     <string name="B_sale">賣商品</string>
     <string name="gogoing">加載中，請稍候</string>
-    <string name="textview">TextView</string>
+    <string name="textview"></string>
+    <string name="record">紀錄</string>
+    <string name="before">上一頁</string>
+    <string name="next">下一頁</string>
+    <string name="record_m_act">賣家\t金額\t時間</string>
+    <string name="record_m_buy">賣家\t商品\t金額\t時間</string>
+    <string name="record_b_act">買家\t金額\t時間</string>
+    <string name="record_b_buy">買家\t商品\t金額\t時間</string>
+    <string name="Ａ">美金</string>
+    <string name="Ｂ">人民幣</string>
+    <string name="CC">日幣</string>
+    <string name="DD">台幣</string>
+    <string name="EE">換算</string>
 </resources>

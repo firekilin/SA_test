@@ -35,4 +35,5 @@
             android:text="@string/m_register" />
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

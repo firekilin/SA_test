@@ -1,9 +1,12 @@
 package com.example.sa_test7;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +23,10 @@ public class business extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business);
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},1);
+        }
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Log.v("ha", "加載JDBC驅動成功");
@@ -48,9 +55,13 @@ public class business extends AppCompatActivity {
     }
     public ResultSet rSet;
 
-    public String url = "jdbc:mysql://db4free.net:3306/kmbmteam?serverTimezone=UTC";
+    public String url = "jdbc:mysql://140.135.113.188:5270/kmbmteam?serverTimezone=UTC";
 
-
+    public void gorecord(View v){
+        Intent it = new Intent(business.this,B_record.class);
+        startActivity(it);
+        finish();
+    }
 
     final  Thread db_nowmoney = new Thread(new Runnable() {
         @Override
@@ -58,7 +69,7 @@ public class business extends AppCompatActivity {
 
             // 3.連接JDBC
             try {
-                Connection conn = DriverManager.getConnection(url, "mkbmyo", "13145270");
+                Connection conn = DriverManager.getConnection(url, "kilin", "5270");
 
                 if (conn != null) {
 

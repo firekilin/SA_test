@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".M_member"></activity>
+        <activity android:name=".B_record" />
+        <activity android:name=".M_record" />
+        <activity android:name=".M_member" />
         <activity android:name=".M_register" />
         <activity android:name=".B_register" />
         <activity android:name=".b_output" />
@@ -20,7 +22,6 @@
         <activity android:name=".M_output" />
         <activity android:name=".M_scanner" />
         <activity android:name=".business" />
-        <activity android:name=".member" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

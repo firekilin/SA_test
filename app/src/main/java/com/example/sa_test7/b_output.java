@@ -51,14 +51,14 @@ public class b_output extends AppCompatActivity {
 
 
     public ResultSet rSet;
-    public String url = "jdbc:mysql://db4free.net:3306/kmbmteam?serverTimezone=UTC";
+    public String url = "jdbc:mysql://140.135.113.188:5270/kmbmteam?serverTimezone=UTC";
         final  Thread db_sqlout = new Thread(new Runnable() {
             @Override
             public void run() {
 
                 // 3.連接JDBC
                 try {
-                    Connection conn = DriverManager.getConnection(url, "mkbmyo", "13145270");
+                    Connection conn = DriverManager.getConnection(url, "kilin", "5270");
 
                     if (conn != null) {
 
